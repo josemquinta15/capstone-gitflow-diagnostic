@@ -1,11 +1,10 @@
-# Los top 10 días donde hay más tweets.
-# Los top 10 hashtags más usados.
-
 import json
+
 from utils import (
     get_top_retweeted,
     get_top_users_by_tweets,
     get_top_days_by_tweets,
+    get_top_hastags,
 )
 
 
@@ -20,6 +19,7 @@ def main():
     print(get_top_retweeted(tweets, 10))
     print(get_top_users_by_tweets(tweets, 10))
     print(get_top_days_by_tweets(tweets, 10))
+    print(get_top_hastags(tweets, 10))
 
 
 if __name__ == "__main__":
