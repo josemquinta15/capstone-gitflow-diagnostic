@@ -33,3 +33,27 @@ def get_top_days_by_tweets(tweets, amount):
     top_days = sorted(days_array, key=lambda day: day[1], reverse=True)[:amount]
     top_days = [day[0] for day in top_days]
     return top_days
+
+
+def get_tweet_hashtags(tweet):
+    body = tweet["content"]
+    hashtags = [hashtag for hashtag in body.split() if hashtag.startswith("#")]
+    return hashtags
+
+
+def get_top_hastags(tweets, amount):
+    hashtags = {}
+    for tweet in tweets:
+        hashtags_in_tweet = get_tweet_hashtags(tweet)
+        for hashtag in hashtags_in_tweet:
+            if hashtag not in hashtags:
+                hashtags[hashtag] = 1
+            else:
+                hashtags[hashtag] += 1
+
+    hashtags_array = list(hashtags.items())
+    top_hashtags = sorted(hashtags_array, key=lambda hashtag: hashtag[1], reverse=True)[
+        :amount
+    ]
+    top_hashtags = [hashtag[0] for hashtag in top_hashtags]
+    return top_hashtags
